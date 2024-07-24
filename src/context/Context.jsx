@@ -11,18 +11,26 @@ const ContextProvider=({children})=>{
     const [loading,setLoading]=useState(false);
     const [resultdata,setResultdata]=useState("");
 
-    const Delaypara=(index,nextWord)=>{
-
+    const onChat=()=>{
+    setLoading(false);
+    setShowresult(false);
     }
     //function for submting question
     const onSent=async(prompt)=>{
       setResultdata("")
       setShowresult(true)
-      setRecentprompt(input)
       setLoading(true)
-      const response =await run(input);
-     
+      if(prompt!==undefined){
+        const response =await run(prompt);
+      setRecentprompt(prompt);
       setResultdata(response);
+      }else{
+        setRecentprompt(input)
+      setPrevprompt(prev=>[...prev,input])
+      const response =await run(input);
+      setResultdata(response);
+      }
+     
       setLoading(false);
       setInput("")
     }
@@ -38,7 +46,7 @@ const ContextProvider=({children})=>{
      resultdata,
      input,
      setInput,
-
+     onChat
     }
     return(
         <Context.Provider value={ContextValue}>
