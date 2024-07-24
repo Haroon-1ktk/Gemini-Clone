@@ -35,7 +35,22 @@ const Main = () => {
                     <img src={assets.code_icon} alt=''/>
                 </div>
             </div>
-          </>: <div></div>}
+          </>: <div className='result'>
+            <div className='result-title'>
+                <img src={assets.user_icon} alt=''/>
+                <p>{recentprompt}</p>
+            </div>
+            <div className="result-data">
+                <img src={assets.gemini_icon} alt="" />
+               {loading?
+               <div className='loader'>
+                <hr />
+                <hr />
+                <hr />
+               </div>
+               : <p dangerouslySetInnerHTML={{__html:resultdata}}></p>}
+            </div>
+            </div>}
             <div className="main-bottom">
                 <div className="search-box">
                     <input type="text" onChange={(e)=>setInput(e.target.value)} value={input} placeholder='Enter your prompt here...' />

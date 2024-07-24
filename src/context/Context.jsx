@@ -11,12 +11,17 @@ const ContextProvider=({children})=>{
     const [loading,setLoading]=useState(false);
     const [resultdata,setResultdata]=useState("");
 
+    const Delaypara=(index,nextWord)=>{
+
+    }
     //function for submting question
     const onSent=async(prompt)=>{
       setResultdata("")
       setShowresult(true)
+      setRecentprompt(input)
       setLoading(true)
       const response =await run(input);
+     
       setResultdata(response);
       setLoading(false);
       setInput("")
